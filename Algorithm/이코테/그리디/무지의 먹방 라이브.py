@@ -1,8 +1,8 @@
 '''
 https://school.programmers.co.kr/learn/courses/30/lessons/42891?language=python3
 
-풀이 시작 시간: 2022-10-17 1
-풀이 종료 시간: 2022-10-17 1
+풀이 시작 시간: 2022-10-17 14:12
+풀이 종료 시간: 2022-10-17 14:44
 
 시간 제한 1초
 메모리 제한 128MB
@@ -10,7 +10,7 @@ https://school.programmers.co.kr/learn/courses/30/lessons/42891?language=python3
 '''
 
 '''
-풀이: 
+풀이: 우선순위 큐를 사용해서 최저 값을 한번에 빼주는 것을 반복하여 구한다.
 '''
 import heapq
 
