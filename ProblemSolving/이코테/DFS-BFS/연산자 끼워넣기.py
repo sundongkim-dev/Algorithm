@@ -22,48 +22,86 @@
 풀이: 
 1st / 주어진 연산자들의 모든 순열을 구하고 연산해서 최댓값과 최솟값 구한다. 11!이 최대 가짓수
 2nd / set을 만들어서 추가해서 이미 검사한 조합에 대해서는 skip
+3rd / DFS를 사용해서 풀이
 
 제출 이력: 
 1st / 시간 초과
 2nd / Pass
+3rd / Pass
 '''
 
-from itertools import permutations
+# # permutations 사용한 풀이
+# from itertools import permutations
 
+# N = int(input())
+# num = list(map(int, input().split()))
+# a, b, c, d = map(int, input().split())
+# ops = ['+']*a + ['-']*b + ['*']*c + ['/']*d
+
+# s = set()
+# maxNum = -1e9-1
+# minNum = 1e9+1
+# for combi in permutations(ops, N-1):
+#     pm = "".join(list(combi))
+#     if pm in s:
+#         continue
+#     else:
+#         s.add(pm)
+#     tmp = num[0]
+#     for idx in range(1, N):
+#         if combi[idx-1] == '+':
+#             tmp += num[idx]
+#         elif combi[idx-1] == '-':
+#             tmp -= num[idx]
+#         elif combi[idx-1] == '*':
+#             tmp *= num[idx]
+#         elif combi[idx-1] == '/':
+#             if tmp < 0 and num[idx] > 0:
+#                 tmp = -((-tmp)//num[idx])
+#             else: 
+#                 tmp //= num[idx]
+
+#     maxNum = max(maxNum, tmp)
+#     minNum = min(minNum, tmp)
+
+# print(maxNum)
+# print(minNum)
+
+# Dfs 사용한 풀이
 N = int(input())
 num = list(map(int, input().split()))
 a, b, c, d = map(int, input().split())
-ops = ['+']*a + ['-']*b + ['*']*c + ['/']*d
 
-s = set()
 maxNum = -1e9-1
 minNum = 1e9+1
-for combi in permutations(ops, N-1):
-    pm = "".join(list(combi))
-    if pm in s:
-        continue
+
+def dfs(i, now):
+    global maxNum, minNum, a, b, c, d
+    if i == N:
+        minNum = min(minNum, now)
+        maxNum = max(maxNum, now)
     else:
-        s.add(pm)
-    tmp = num[0]
-    for idx in range(1, N):
-        if combi[idx-1] == '+':
-            tmp += num[idx]
-        elif combi[idx-1] == '-':
-            tmp -= num[idx]
-        elif combi[idx-1] == '*':
-            tmp *= num[idx]
-        elif combi[idx-1] == '/':
-            if tmp < 0 and num[idx] > 0:
-                tmp = -((-tmp)//num[idx])
-            else: 
-                tmp //= num[idx]
+        if a > 0:
+            a -= 1
+            dfs(i+1, now+num[i])
+            a += 1
+        if b > 0:
+            b -= 1
+            dfs(i+1, now-num[i])
+            b += 1
+        if c > 0:
+            c -= 1
+            dfs(i+1, now*num[i])
+            c += 1
+        if d > 0:
+            d -= 1
+            dfs(i+1, int(now/num[i]))
+            d += 1
 
-    maxNum = max(maxNum, tmp)
-    minNum = min(minNum, tmp)
-
+dfs(1, num[0])
 print(maxNum)
 print(minNum)
-
+        
 
 
 
