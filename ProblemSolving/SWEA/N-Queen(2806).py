@@ -1,8 +1,8 @@
 '''
 출처: https://swexpertacademy.com/main/code/problem/problemDetail.do?problemLevel=3&contestProbId=AV7GKs06AU0DFAXB&categoryId=AV7GKs06AU0DFAXB&categoryType=CODE&problemTitle=&orderBy=INQUERY_COUNT&selectCodeLang=ALL&select-1=3&pageSize=10&pageIndex=2
 
-풀이 시작 시간: 2022-11-17 11:44
-풀이 종료 시간: 2022-11-17 11:
+풀이 시작 시간: 2022-11-17 12:06
+풀이 종료 시간: 2022-11-17 13:11
 
 시간 제한: 10/8초
 메모리 제한: 256MB
