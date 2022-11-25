@@ -1,5 +1,5 @@
 '''
-출처: https://www.acmicpc.net/problem/18353
+출처: Google 인터뷰
 
 풀이 시작 시간: 2022-11-25 12:19
 풀이 종료 시간: 2022-11-25 12:27
@@ -26,11 +26,11 @@ n = int(input())
 dp = [0]*n
 dp[0] = 1
 
-i2=i3=i5=0
-n2,n3,n5 = 2,3,5
+i2 = i3 = i5 = 0
+n2, n3, n5 = 2, 3, 5
 
 for i in range(1, n):
-    dp[i] = min(n2,n3,n5)
+    dp[i] = min(n2, n3, n5)
     if dp[i] == n2:
         i2 += 1
         n2 = dp[i2] * 2
