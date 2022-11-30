@@ -1,5 +1,5 @@
 '''
-출처: https://www.acmicpc.net/problem/2263
+출처: https://www.acmicpc.net/problem/1717
 
 풀이 시작 시간: 2022-11-30 09:58
 풀이 종료 시간: 2022-11-30 10:26
@@ -22,35 +22,38 @@
 풀이: 
 1st / union-find 활용
 2nd / Recursion depth 늘리기
+3rd / Recursion depth 안 건드리고 풀기
 
 제출 이력:
 1st / Fail
 2nd / Pass
+3rd / Pass
 '''
 
 import sys
-sys.setrecursionlimit(int(1e5))
+
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
-parent = [i for i in range(n+1)]
+parent = [-1] * (n+1)
 
 def find(x):
-    if x == parent[x]:
+    if parent[x] < 0:
         return x
-    
     parent[x] = find(parent[x])
     return parent[x]
 
 def union(a, b):
     a = find(a)
     b = find(b)
-    
-    if a < b:
-        parent[b] = a
-    else:
-        parent[a] = b
-
+    if a != b:
+        if parent[a] < parent[b]:
+            parent[a] += parent[b]
+            parent[b] = a
+        else:
+            parent[b] += parent[a]
+            parent[a] = b
+            
 for _ in range(m):
     cmd, a, b = map(int, input().split())
     if cmd:
@@ -60,3 +63,4 @@ for _ in range(m):
             print("NO")
     else:
         union(a, b)
+    print(parent)
